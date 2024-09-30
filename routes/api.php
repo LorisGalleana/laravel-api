@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Pagecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/', [Pagecontroller::class, 'index']);
+Route::get('/project-by-slug/{slug}', [Pagecontroller::class, 'projectBySlug']);
+Route::get('/types', [Pagecontroller::class, 'types']);
+Route::get('/technologies', [Pagecontroller::class, 'technologies']);
+Route::get('/projects-by-type/{slug}', [Pagecontroller::class, 'projectsByType']);
+Route::get('/projects-by-technology/{slug}', [Pagecontroller::class, 'projectsByTechnology']);
