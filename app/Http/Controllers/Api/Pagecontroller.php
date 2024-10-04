@@ -7,7 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class Pagecontroller extends Controller
 {
@@ -24,10 +24,10 @@ class Pagecontroller extends Controller
         if($project){
             $success = true;
             if($project->path_image){
-                $project->path_image = asset('storage/' . $project->path_image);
+                $project->path_image = Storage::url($project->path_image);
             }
             else{
-                $project->path_image = '/img/no-image.jpg';
+                $project->path_image = Storage::url('no-image.jpg');
                 $project->image_original_name = 'no image';
             }
         }
