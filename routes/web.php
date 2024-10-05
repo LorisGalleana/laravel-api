@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::get('type-projects', [TypeController::class, 'typeProjects'])->name('typeProjects');
         Route::get('project-pert-type/{type}', [TypeController::class, 'projectPerType'])->name('projectPerType');
+        Route::get('projects/trash', [ProjectController::class, 'trash'])->name('projects.trash');
+        Route::patch('projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
+        Route::delete('projects/{project}/delete', [ProjectController::class, 'delete'])->name('projects.delete');
 
 
         Route::resource('projects', ProjectController::class);

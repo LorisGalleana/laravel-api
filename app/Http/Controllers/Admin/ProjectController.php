@@ -161,4 +161,26 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.projects.index')->with('delete', 'Il progetto ' . $project->title . ' è stato eliminato correttamente');
     }
+
+    public function trash(){
+        $projects = Project::onlyTrashed()
+                        ->orderBy('id', 'desc')
+                        ->paginate(15);
+        return view('admin.projects.trash', compact('projects'));
+    }
+
+    public function restore($id){
+        $project = Project::withTrashed()->find($id);
+        $project->restore();
+        return redirect()->route('admin.projects.index')->with('message', 'Il progetto ' . $project->title . ' è stato ripristinato correttamente.');
+    }
+
+    public function delete($id){
+        $project = Project::withTrashed()->find($id);
+        if($project->path_image){
+            Storage::delete($project->path_image);
+        }
+        $project->forceDelete();
+        return redirect()->route('admin.projects.index')->with('message', 'Il progetto ' . $project->title . ' è stato eliminato definitivamente.');
+    }
 }

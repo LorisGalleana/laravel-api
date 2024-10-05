@@ -5,5 +5,6 @@
         <li class="pb-3"><a href="{{ route('admin.projects.create') }}"><i class="fa-solid fa-newspaper "></i> Nuovo progetto</a></li>
         <li class="pb-3"><a href="{{ route('admin.types.index') }}"><i class="fa-solid fa-pen-to-square "></i> Gestione tipologie</a></li>
         <li class="pb-3"><a href="{{ route('admin.typeProjects') }}"><i class="fa-solid fa-layer-group "></i> Progetti per tipologie</a></li>
+        <li class="pb-3"><a href="{{ route('admin.projects.trash') }}"><i class="fa-solid fa-trash "></i> Cestino</a></li>
     </ul>
 </aside>
